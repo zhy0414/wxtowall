@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd">
+    
+    <description>Spring MVC Configuration</description>
+    
+    
+    <mvc:annotation-driven />
+    
+    
+    
+    
+	<!-- 自动扫描controller包下的所有类，如果@Controller注入为bean -->
+	<context:component-scan base-package="com.zsoft.wx.controller" />
+	<aop:aspectj-autoproxy />
+	<!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->
+	<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>text/html;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>  
+				<!-- json转换器 -->
+				<ref bean="mappingJacksonHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+	
+	<mvc:resources location="/WEB-INF/views/js/" mapping="/views/js/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/views/css/" mapping="/views/css/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/views/images/" mapping="/views/images/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/views/fonts/" mapping="/views/fonts/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/views/uploadify/" mapping="/views/uploadify/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/views/libs/" mapping="/views/libs/**"></mvc:resources>
+	
+	<!-- 定义视图文件解析 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/pages"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/login/**"/>
+			<mvc:exclude-mapping path="http**"/>
+			<mvc:exclude-mapping path="/views/js/**"/>
+			<mvc:exclude-mapping path="/views/css/**"/>
+			<mvc:exclude-mapping path="/views/fonts/**"/>
+			<mvc:exclude-mapping path="/views/images/**"/>
+			<mvc:exclude-mapping path="/views/images/front/web/**"/>
+			<mvc:exclude-mapping path="/views/fonts/**"/>
+			<mvc:exclude-mapping path="/scode/createpic"/>
+			<mvc:exclude-mapping path="/ueditor/**"/>
+			<mvc:exclude-mapping path="/error/**"/>
+			<mvc:exclude-mapping path="/qimen/**"/>
+			<mvc:exclude-mapping path="/acquire-create-pay/**"/>
+			<mvc:exclude-mapping path="/pay-page-sign/**"/>
+			<mvc:exclude-mapping path="/repayment/**"/>
+			<bean class="com.gede.recycle.xianyu.interceptor.CommonInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<mvc:default-servlet-handler/>
+	
+	
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="org.apache.shiro.authz.UnauthorizedException">error/403</prop>
+				<prop key="java.lang.Throwable">error/500</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- 上传文件拦截，设置最大上传文件大小   10M=10*1024*1024(B)=10485760 bytes -->  
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+        <property name="defaultEncoding" value="utf-8"></property>   
+        <property name="maxUploadSize" value="10485760000"></property>  
+        <property name="maxInMemorySize" value="40960"></property>  
+   </bean>
+   
+	<import resource="spring-context.xml" />
+</beans>
