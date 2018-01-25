@@ -26,18 +26,18 @@
         <property name="properties" ref="configProperties"/>
     </bean>
     
-	<context:component-scan base-package="com.gede.recycle.xianyu.dao.*" />
-	<context:component-scan base-package="com.gede.recycle.xianyu.service.*" />
+	<context:component-scan base-package="com.zsoft.wx.dao.*" />
+	<context:component-scan base-package="com.zsoft.wx.service.*" />
 	
     <!-- 扫描任务 -->
-    <context:component-scan base-package="com.gede.recycle.xianyu.task" />
+    <!-- <context:component-scan base-package="com.zsoft.wx.task" />
     <task:scheduled-tasks>
-   		<!-- 代扣追回定时器 每天中午12点 -->
+   		代扣追回定时器 每天中午12点
     	<task:scheduled ref="recycleTask" method="recoverCreditPay" cron="0 0 12 * * ?"/>
-    	<!-- 代扣逾期推送定时器 每天13点 -->
+    	代扣逾期推送定时器 每天13点
     	<task:scheduled ref="recycleTask" method="timeoutCreditPay" cron="0 0 13 * * ?"/>
     
-    </task:scheduled-tasks>
+    </task:scheduled-tasks> -->
 	
 	<context:annotation-config />
 	<aop:aspectj-autoproxy />
@@ -83,11 +83,11 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:mybatis-config.xml" />
 		<!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->
-		<property name="mapperLocations" value="classpath:com/gede/recycle/xianyu/mapping/*.xml" />
+		<property name="mapperLocations" value="classpath:com/zsoft/wx/mapping/*.xml" />
 	</bean>
 
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.gede.recycle.xianyu.dao" />
+		<property name="basePackage" value="com.zsoft.wx.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 
@@ -115,7 +115,7 @@
 	</tx:advice>
 	<!-- Spring aop事务管理 -->
 	<aop:config>
-		<aop:pointcut id="transactionPointcut" expression="execution(* com.gede.recycle.xianyu.service..*.*(..))" />
+		<aop:pointcut id="transactionPointcut" expression="execution(* com.zsoft.wx.service..*.*(..))" />
 		<aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" />
 	</aop:config>
 	

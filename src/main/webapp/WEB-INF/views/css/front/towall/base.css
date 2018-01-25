@@ -1,0 +1,100 @@
+﻿@charset "utf-8";
+
+/* 
+	@名称: base
+	@功能: 重设浏览器默认样式
+*/
+
+/* 防止用户自定义背景颜色对网页的影响，添加让用户可以自定义字体 */
+html{
+	color:#000;background:#e9e9e9;
+	-webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+html, body { height: 100%; margin: 0; padding: 0; }
+.clr:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.clr{zoom:1;}
+
+/* 内外边距通常让各个浏览器样式的表现位置不同 */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,form,input,textarea,p,th,td,button {
+	margin:0;padding:0;
+}
+
+/* 要注意表单元素并不继承父级 font 的问题 */
+body,button,input,select,textarea{
+	font:12px/1.5 arial;
+	font-family:'黑体';
+}
+input,select,textarea{
+	font-size:100%;
+}
+
+/* 去掉各Table  cell 的边距并让其边重合 */
+table{
+	border-collapse:collapse;border-spacing:0;
+}
+
+/* IE bug fixed: th 不继承 text-align*/
+th{
+	text-align:inherit;
+}
+
+/* 去除默认边框 */
+img{
+	border:0;
+}
+/* 去掉列表前的标识, li 会继承 */
+li{
+	list-style:none;
+}
+
+/* 来自yahoo, 让标题都自定义, 适应多个系统应用 */
+h1,h2,h3,h4,h5,h6 {
+	font-size:100%;
+	font-weight:400;
+}
+
+
+/* 清理浮动 */
+.clearfix:after {
+	visibility:hidden;
+	display:block;
+	font-size:0;
+	content:" ";
+	clear:both;
+	height:0;
+}
+.clearfix {
+	zoom:1; /* for IE6 IE7 */
+}
+
+/* 隐藏, 通常用来与 JS 配合 */
+body .hide {
+	display:none;
+}
+
+/* 设置内联, 减少浮动带来的bug */
+.fl,.fr {
+	display:inline;
+}
+.fl {
+	float:left;
+}
+.fr {
+	float:right;
+}
+
+/********去虚线框**********/
+a{ text-decoration: none;  }
+a{
+blr: expression(this.onFocus=this.close());
+} /* 只支持IE，过多使用效率低 */
+a{
+blr: expression(this.onFocus=this.blur());
+} /* 只支持IE，过多使用效率低 */
+a:focus {
+-moz-outline-style: none;
+} /* IE不支持 */
+:focus {
+outline: none;
+} /* for Firefox */

@@ -55,7 +55,7 @@
 		<property name="suffix" value=".jsp"/>
 	</bean>
 	
-	<mvc:interceptors>
+	<!-- <mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
 			<mvc:exclude-mapping path="/login/**"/>
@@ -73,9 +73,9 @@
 			<mvc:exclude-mapping path="/acquire-create-pay/**"/>
 			<mvc:exclude-mapping path="/pay-page-sign/**"/>
 			<mvc:exclude-mapping path="/repayment/**"/>
-			<bean class="com.gede.recycle.xianyu.interceptor.CommonInterceptor"></bean>
+			<bean class="com.zsoft.wx.interceptor.CommonInterceptor"></bean>
 		</mvc:interceptor>
-	</mvc:interceptors>
+	</mvc:interceptors> -->
 	
 	<mvc:default-servlet-handler/>
 	

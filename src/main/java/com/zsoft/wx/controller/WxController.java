@@ -2,6 +2,8 @@ package com.zsoft.wx.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,7 @@ import com.zsoft.wx.util.SignUtil;
 @Controller
 @RequestMapping("wx")
 public class WxController {
+	private Logger logger = LoggerFactory.getLogger(WxController.class);
 	
 	@Value("#{configProperties['appID']}")
 	private String appID;
@@ -34,6 +37,9 @@ public class WxController {
 			@RequestParam(value="timestamp", required=false) String timestamp, 
 			@RequestParam(value="nonce", required=false) String nonce,
 			@RequestParam(value="echostr", required=false) String echostr){
+		
+		logger.info("signature:"+signature+", timestamp:"+timestamp+", nonce:"+nonce+", echostr:"+echostr);
+		
 		String returnStr = "";
 		
 		String method = request.getMethod();

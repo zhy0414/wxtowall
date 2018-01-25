@@ -51,7 +51,6 @@ public class WxServiceImpl implements WxService{
 	@Autowired
 	private WxUserInfoMapper wxUserInfoMapper;
 
-	@Override
 	public String coreService(HttpServletRequest request) {
 		String respMessage = null;  
         try {  

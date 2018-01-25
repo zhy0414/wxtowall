@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zsoft.wx.dao.TowallMessageMapper" >
+  <resultMap id="BaseResultMap" type="com.zsoft.wx.model.TowallMessage" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="openid" property="openid" jdbcType="VARCHAR" />
+    <result column="msg_type" property="msgType" jdbcType="INTEGER" />
+    <result column="msg_text" property="msgText" jdbcType="VARCHAR" />
+    <result column="msg_text_pc" property="msgTextPc" jdbcType="VARCHAR" />
+    <result column="msg_id" property="msgId" jdbcType="VARCHAR" />
+    <result column="msg_media_id" property="msgMediaId" jdbcType="VARCHAR" />
+    <result column="msg_title" property="msgTitle" jdbcType="VARCHAR" />
+    <result column="msg_description" property="msgDescription" jdbcType="VARCHAR" />
+    <result column="msg_path" property="msgPath" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="ctime" property="ctime" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, openid, msg_type, msg_text, msg_text_pc, msg_id, msg_media_id, msg_title, 
+    msg_description, msg_path, status, ctime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from towall_message
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from towall_message
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zsoft.wx.model.TowallMessage" >
+    insert into towall_message (id, username, openid, 
+      msg_type, msg_text, msg_text_pc, 
+      msg_id, msg_media_id, msg_title, 
+      msg_description, msg_path, status, 
+      ctime)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, 
+      #{msgType,jdbcType=INTEGER}, #{msgText,jdbcType=VARCHAR}, #{msgTextPc,jdbcType=VARCHAR}, 
+      #{msgId,jdbcType=VARCHAR}, #{msgMediaId,jdbcType=VARCHAR}, #{msgTitle,jdbcType=VARCHAR}, 
+      #{msgDescription,jdbcType=VARCHAR}, #{msgPath,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{ctime,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zsoft.wx.model.TowallMessage" >
+    insert into towall_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="openid != null" >
+        openid,
+      </if>
+      <if test="msgType != null" >
+        msg_type,
+      </if>
+      <if test="msgText != null" >
+        msg_text,
+      </if>
+      <if test="msgTextPc != null" >
+        msg_text_pc,
+      </if>
+      <if test="msgId != null" >
+        msg_id,
+      </if>
+      <if test="msgMediaId != null" >
+        msg_media_id,
+      </if>
+      <if test="msgTitle != null" >
+        msg_title,
+      </if>
+      <if test="msgDescription != null" >
+        msg_description,
+      </if>
+      <if test="msgPath != null" >
+        msg_path,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null" >
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="msgType != null" >
+        #{msgType,jdbcType=INTEGER},
+      </if>
+      <if test="msgText != null" >
+        #{msgText,jdbcType=VARCHAR},
+      </if>
+      <if test="msgTextPc != null" >
+        #{msgTextPc,jdbcType=VARCHAR},
+      </if>
+      <if test="msgId != null" >
+        #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgMediaId != null" >
+        #{msgMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgTitle != null" >
+        #{msgTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="msgDescription != null" >
+        #{msgDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="msgPath != null" >
+        #{msgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zsoft.wx.model.TowallMessage" >
+    update towall_message
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null" >
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="msgType != null" >
+        msg_type = #{msgType,jdbcType=INTEGER},
+      </if>
+      <if test="msgText != null" >
+        msg_text = #{msgText,jdbcType=VARCHAR},
+      </if>
+      <if test="msgTextPc != null" >
+        msg_text_pc = #{msgTextPc,jdbcType=VARCHAR},
+      </if>
+      <if test="msgId != null" >
+        msg_id = #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgMediaId != null" >
+        msg_media_id = #{msgMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgTitle != null" >
+        msg_title = #{msgTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="msgDescription != null" >
+        msg_description = #{msgDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="msgPath != null" >
+        msg_path = #{msgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zsoft.wx.model.TowallMessage" >
+    update towall_message
+    set username = #{username,jdbcType=VARCHAR},
+      openid = #{openid,jdbcType=VARCHAR},
+      msg_type = #{msgType,jdbcType=INTEGER},
+      msg_text = #{msgText,jdbcType=VARCHAR},
+      msg_text_pc = #{msgTextPc,jdbcType=VARCHAR},
+      msg_id = #{msgId,jdbcType=VARCHAR},
+      msg_media_id = #{msgMediaId,jdbcType=VARCHAR},
+      msg_title = #{msgTitle,jdbcType=VARCHAR},
+      msg_description = #{msgDescription,jdbcType=VARCHAR},
+      msg_path = #{msgPath,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      ctime = #{ctime,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <!-- 自定义部分 -->
+
+  <!-- 得到新的消息，即在上次调取时间之后的消息，已废弃  -->
+  <!-- <select id="selectNewMsg" resultMap="BaseResultMap" parameterType="java.lang.Long">
+  	select
+  	<include refid="Base_Column_List" />
+  	from towall_message
+  	where ctime <![CDATA[>]]> #{lastTime, jdbcType=BIGINT} and ctime <![CDATA[<=]]> #{curTime, jdbcType=BIGINT}
+  </select> -->
+  
+  <!-- 得到待上墙消息 -->
+  <select id="selectNewMsg" resultMap="BaseResultMap">
+  	select
+  	<include refid="Base_Column_List" />
+  	from towall_message
+  	where status=0;
+  </select>
+  
+  <!-- 将已上墙消息改变状态 -->
+  <update id="updateNewMsgStatus" parameterType="com.zsoft.wx.model.TowallMessage">
+  	update towall_message
+  	set status=1
+  	where
+  	<foreach collection="messages" item="item" index="index" open="id=" close="" separator="or">
+  		#{item.id}
+  	</foreach>
+  </update>
+</mapper>

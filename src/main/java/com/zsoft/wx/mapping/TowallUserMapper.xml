@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zsoft.wx.dao.TowallUserMapper" >
+  <resultMap id="BaseResultMap" type="com.zsoft.wx.model.TowallUser" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="openid" property="openid" jdbcType="VARCHAR" />
+    <result column="headimgurl" property="headimgurl" jdbcType="VARCHAR" />
+    <result column="readnum" property="readnum" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="msg_num" property="msgNum" jdbcType="INTEGER" />
+    <result column="last_msg_time" property="lastMsgTime" jdbcType="BIGINT" />
+    <result column="regist_time" property="registTime" jdbcType="TIMESTAMP" />
+    <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, mobile, openid, headimgurl, readnum, status, msg_num, last_msg_time, 
+    regist_time, ctime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from towall_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from towall_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zsoft.wx.model.TowallUser" >
+    insert into towall_user (id, username, mobile, 
+      openid, headimgurl, readnum, 
+      status, msg_num, last_msg_time, 
+      regist_time, ctime)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{openid,jdbcType=VARCHAR}, #{headimgurl,jdbcType=VARCHAR}, #{readnum,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{msgNum,jdbcType=INTEGER}, #{lastMsgTime,jdbcType=BIGINT}, 
+      #{registTime,jdbcType=TIMESTAMP}, #{ctime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zsoft.wx.model.TowallUser" >
+    insert into towall_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="openid != null" >
+        openid,
+      </if>
+      <if test="headimgurl != null" >
+        headimgurl,
+      </if>
+      <if test="readnum != null" >
+        readnum,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="msgNum != null" >
+        msg_num,
+      </if>
+      <if test="lastMsgTime != null" >
+        last_msg_time,
+      </if>
+      <if test="registTime != null" >
+        regist_time,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null" >
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="headimgurl != null" >
+        #{headimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="readnum != null" >
+        #{readnum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="msgNum != null" >
+        #{msgNum,jdbcType=INTEGER},
+      </if>
+      <if test="lastMsgTime != null" >
+        #{lastMsgTime,jdbcType=BIGINT},
+      </if>
+      <if test="registTime != null" >
+        #{registTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zsoft.wx.model.TowallUser" >
+    update towall_user
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null" >
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="headimgurl != null" >
+        headimgurl = #{headimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="readnum != null" >
+        readnum = #{readnum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="msgNum != null" >
+        msg_num = #{msgNum,jdbcType=INTEGER},
+      </if>
+      <if test="lastMsgTime != null" >
+        last_msg_time = #{lastMsgTime,jdbcType=BIGINT},
+      </if>
+      <if test="registTime != null" >
+        regist_time = #{registTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zsoft.wx.model.TowallUser" >
+    update towall_user
+    set username = #{username,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      openid = #{openid,jdbcType=VARCHAR},
+      headimgurl = #{headimgurl,jdbcType=VARCHAR},
+      readnum = #{readnum,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      msg_num = #{msgNum,jdbcType=INTEGER},
+      last_msg_time = #{lastMsgTime,jdbcType=BIGINT},
+      regist_time = #{registTime,jdbcType=TIMESTAMP},
+      ctime = #{ctime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+  <!-- 添加 -->
+  
+  <select id="selectByOpenid" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select
+  	<include refid="Base_Column_List" />
+  	from towall_user
+  	where openid = #{openid, jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByUsernameAndMobile" resultMap="BaseResultMap">
+  	select
+  	<include refid="Base_Column_List" />
+  	from towall_user
+  	where username = #{username, jdbcType=VARCHAR} AND mobile = #{mobile, jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectActiveUser" resultMap="BaseResultMap">
+  	select
+  	<include refid="Base_Column_List" />
+  	from towall_user
+  	where status=1 AND msg_num <![CDATA[<]]> 21 AND last_msg_time > UNIX_TIMESTAMP(now()) - 172700;	<!-- һ�� 86400 �룬2 ���� 172800 -->
+  </select>
+  
+  <!--   得到所有上墙用户 -->
+  <select id="selectAllUser" resultMap="BaseResultMap">
+  	select
+  	<include refid="Base_Column_List" />
+  	from towall_user
+  </select>
+  
+  <update id="updateStatusAndOpenid">
+  	update towall_user
+  	<set>
+  		status = #{status, jdbcType=INTEGER},
+  		openid = #{openid, jdbcType=VARCHAR},
+  		last_msg_time = UNIX_TIMESTAMP(now()),
+  		regist_time = now()
+  	</set>
+  	where id = #{id, jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateLastmsgtimeAndMesnum" parameterType="java.lang.Integer">
+  	update towall_user
+  	<set>
+  		msg_num = 0,
+  		last_msg_time = UNIX_TIMESTAMP(now())
+  	</set>
+  	where id = #{id, jdbcType=INTEGER}
+  </update>
+  
+  <select id="countall" resultType="java.lang.Integer">
+  	select count(*) c from towall_user
+  	where openid<![CDATA[<>]]>""
+  </select>
+  
+  <update id="updateMsgNum" parameterType="java.lang.Integer">
+  	update `towall_user`
+  	<set>
+  		msg_num = msg_num + 1
+  	</set>
+  	where id = #{id, jdbcType=INTEGER}
+  </update>
+  
+</mapper>
